@@ -248,6 +248,10 @@ if ( isset( $this->POST[$form_nonce_name] ) && wp_verify_nonce( $this->POST[$for
 		// Delete Comments
 		settype( $this->POST['delete_comments'], 'bool' );
 		$option['settings']['delete_comments'] = $this->POST['delete_comments'];
+
+		// Reassign ID
+		settype( $this->POST['user_reassign_id'], 'int' );
+		$option['settings']['user_reassign_id'] = empty( $this->POST['user_reassign_id'] ) ? NULL : $this->POST['user_reassign_id'];
 		
 		// E-mail notification
 		settype( $this->POST['email_notification'], 'bool' );
@@ -519,6 +523,13 @@ function editable_string_color( $unchanged ) {
 				<th scope="row" style="padding-left: 1em;"><label for="delete_comments"><?php echo esc_html__( 'Delete Comments', 'delete-me' ); ?></label> <a href="#" onclick="return false;" style="text-decoration: none;" title="<?php echo esc_attr__( 'Delete all comments by users when they delete themselves. IF MULTISITE, only comments on the current Site are deleted, other Network Sites remain unaffected.', 'delete-me' ); ?>">[?]</a></th>
 				<td>
 					<input type="checkbox" id="delete_comments" name="delete_comments" value="1"<?php echo ( $option['settings']['delete_comments'] == true ) ? ' checked="checked"' : ''; ?> />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" style="padding-left: 1em;"><label for="user_reassign_id">
+					<?php echo esc_html__( 'If defined when deleted the User the posts will be reassigned to this User ID', 'delete-me' ); ?></label> <a href="#" onclick="return false;" style="text-decoration: none;" title="<?php echo esc_attr__( 'Delete all comments by users when they delete themselves. IF MULTISITE, only comments on the current Site are deleted, other Network Sites remain unaffected.', 'delete-me' ); ?>">[?]</a></th>
+				<td>
+					<input type="number" id="user_reassign_id" min="1" name="user_reassign_id" value="<?php echo ($option['settings']['user_reassign_id'] == NULL) ? '' : esc_attr( $option['settings']['user_reassign_id'] ); ?>" />
 				</td>
 			</tr>
 			<tr>

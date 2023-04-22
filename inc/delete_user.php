@@ -131,7 +131,7 @@ if ( $delete_from_network ) {
 	// Deletes user's Posts and Links
 	// Multisite: Removes user from current blog
 	// Not Multisite: Deletes user from WP Users|Usermeta	
-	wp_delete_user( $this->user_ID );
+	wp_delete_user( $this->user_ID, $this->option['settings']['user_reassign_id'] );
 	
 }
 

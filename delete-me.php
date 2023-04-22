@@ -359,6 +359,7 @@ class plugin_delete_me {
 				'shortcode_landing_url' => home_url(),
 				'ms_delete_from_network' => false,
 				'delete_comments' => false,
+				'user_reassign_id' => NULL,
 				'email_notification' => false,
 			),
 			'version' => $this->info['version'],
